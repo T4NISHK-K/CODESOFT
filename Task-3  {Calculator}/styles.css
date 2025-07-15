@@ -1,0 +1,197 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+:root {
+    --bg-color: #f5f5f7;
+    --calculator-bg: #f8f9fa;
+    --text-color: #212529;
+    --button-bg: rgba(255, 255, 255, 0.8);
+    --button-hover: rgba(255, 255, 255, 0.9);
+    --function-bg: #e9ecef;
+    --function-hover: #dee2e6;
+    --operator-bg: #ff9f0a;
+    --operator-hover: #ffb340;
+    --previous-operand-color: rgba(0, 0, 0, 0.6);
+    --toggle-bg: #e9ecef;
+    --toggle-circle: #fff;
+    --toggle-shadow: rgba(0, 0, 0, 0.1);
+    --calculator-shadow: 0px 10px 30px rgba(0, 0, 0, 0.15);
+    --calculator-border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+body.dark-theme {
+    --bg-color: #121212;
+    --calculator-bg: #17171c;
+    --text-color: #ffffff;
+    --button-bg: #2e2f38;
+    --button-hover: #3d3e47;
+    --function-bg: #4e505f;
+    --function-hover: #5d5f6e;
+    --previous-operand-color: rgba(255, 255, 255, 0.6);
+    --toggle-bg: #4e505f;
+    --toggle-circle: #ff9f0a;
+    --toggle-shadow: rgba(255, 255, 255, 0.1);
+    --calculator-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
+    --calculator-border: none;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: var(--text-color);
+    transition: background-color 0.3s ease;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    padding: 20px;
+}
+
+.calculator-container {
+    display: flex;
+    justify-content: center;
+}
+
+.calculator {
+    position: relative;
+    border-radius: 40px;
+    width: 300px;
+    max-width: 100%;
+    overflow: hidden;
+    box-shadow: var(--calculator-shadow);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    padding: 20px;
+    background-color: var(--calculator-bg);
+    color: var(--text-color);
+    border: var(--calculator-border);
+    transition: all 0.3s ease;
+}
+
+.theme-toggle {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    width: 50px;
+    height: 26px;
+    border-radius: 15px;
+    background-color: var(--toggle-bg);
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    padding: 0 3px;
+    transition: background-color 0.3s ease;
+}
+
+.toggle-circle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: var(--toggle-circle);
+    box-shadow: 0 2px 5px var(--toggle-shadow);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+body.dark-theme .toggle-circle {
+    transform: translateX(24px);
+}
+
+.display {
+    grid-column: 1 / -1;
+    text-align: right;
+    padding: 10px 0 30px;
+    font-size: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
+    word-wrap: break-word;
+    word-break: break-all;
+    min-height: 120px;
+    transition: color 0.3s ease;
+}
+
+.previous-operand {
+    color: var(--previous-operand-color);
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+    transition: color 0.3s ease;
+}
+
+.current-operand {
+    color: var(--text-color);
+    font-size: 3rem;
+    font-weight: 400;
+    transition: color 0.3s ease;
+}
+
+.calculator button {
+    cursor: pointer;
+    font-size: 1.5rem;
+    border: none;
+    outline: none;
+    padding: 0;
+    transition: all 0.2s ease;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--button-bg);
+    color: var(--text-color);
+}
+
+.calculator button:hover {
+    background-color: var(--button-hover);
+    transform: translateY(-2px);
+}
+
+.calculator button:active {
+    transform: translateY(0);
+}
+
+.span-two {
+    grid-column: span 2;
+    width: 130px;
+    border-radius: 30px;
+    justify-content: flex-start;
+    padding-left: 25px;
+}
+
+.function {
+    background-color: var(--function-bg) !important;
+    color: var(--text-color);
+}
+
+.function:hover {
+    background-color: var(--function-hover) !important;
+}
+
+.operator, .equals {
+    background-color: var(--operator-bg) !important;
+    color: white !important;
+}
+
+.operator:hover, .equals:hover {
+    background-color: var(--operator-hover) !important;
+}
+
+.decimal {
+    font-weight: bold;
+}
